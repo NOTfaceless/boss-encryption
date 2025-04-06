@@ -20,8 +20,14 @@ def HandleMsg(msg,Encrypt):
     newMsg = []
     strInd = 0
     for char in msg:
-        letterPos = letter_positions[char.lower()]
         newChar = " "
+
+        if char == newChar:
+            newMsg.append(newChar)
+            continue
+
+        letterPos = letter_positions[char.lower()]
+
 
         if Encrypt:
             newChar = alphabet[(letterPos + LettersAhead) % len(alphabet)]
@@ -46,7 +52,7 @@ def numberCheck(msg):
     
 
 while not TERMINATE:
-    
+
     command = input("Input your command :  ")
     if command.lower() == "q":
         TERMINATE = True
