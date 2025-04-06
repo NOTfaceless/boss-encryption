@@ -1,2 +1,2 @@
-Very sopistichated encryption
-python bossEncr.py
+Very sopistichated encryption\n
+to run type python bossEncr.py
