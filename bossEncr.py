@@ -35,8 +35,11 @@ def HandleMsg(msg,Encrypt):
                             
 
         strInd += 1
+<<<<<<< HEAD
         if char.isupper():
             newChar = newChar.upper()
+=======
+>>>>>>> b1164aac0359b87015547abd5e487be63bebf968
         newMsg = newMsg[:strInd] + newChar
     return newMsg    
 
@@ -54,7 +57,11 @@ while not TERMINATE:
     if command.lower() == "q":
         TERMINATE = True
         print("-------------------")
+<<<<<<< HEAD
         print("SBoss encryption is closing...")
+=======
+        print("Super duper encryption is closing...")
+>>>>>>> b1164aac0359b87015547abd5e487be63bebf968
     elif command.lower() == "encr":
 
         msg = input("Insert your messeg: ")
