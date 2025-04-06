@@ -1,6 +1,7 @@
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+import string
+alphabet = string.ascii_lowercase
 
-
+print(alphabet)
 
 
 
@@ -12,40 +13,32 @@ print("Q = quit\n---------\n" "Encr = Encrypts msg\n---------\n" "Decr = Decrypt
 
 TERMINATE = False
 LettersAhead = 3
+ALPHABET_SIZE = 26
+letter_positions = {letter: i for i, letter in enumerate(alphabet)}
 
 def HandleMsg(msg,Encrypt):
-    newMsg = ""
+    newMsg = []
     strInd = 0
     for char in msg:
+        letterPos = letter_positions[char.lower()]
         newChar = " "
-        for i in range(0,26):
-            if alphabet[i] == char.lower():
-                if Encrypt:
-                    if i + LettersAhead - 1 >= 25:
-                        diff = 25 - i
-                        newChar = alphabet[(LettersAhead-diff) - 1]
-                    else:    
-                        newChar = alphabet[i + LettersAhead]
-                else:
-                    if i - LettersAhead < 0:
-                        newChar = alphabet[25 - abs(i - LettersAhead) + 1]
-                    else:
-                        newChar = alphabet[i - LettersAhead]
-                            
-                            
 
-        strInd += 1
-<<<<<<< HEAD
+        if Encrypt:
+            newChar = alphabet[(letterPos + LettersAhead) % len(alphabet)]
+        else:
+            newChar = alphabet[(letterPos - LettersAhead) % len(alphabet)]
+                            
         if char.isupper():
             newChar = newChar.upper()
-=======
->>>>>>> b1164aac0359b87015547abd5e487be63bebf968
-        newMsg = newMsg[:strInd] + newChar
-    return newMsg    
+        
+        newMsg.append(newChar)
+
+
+    return "".join(newMsg)   
 
 def numberCheck(msg):
 
-    if msg.isdigit():
+    if  msg.isdigit():
         print("NUMBERS NOT SUPPORTED YET OK BOSS?")
         return True
     else:
@@ -53,15 +46,12 @@ def numberCheck(msg):
     
 
 while not TERMINATE:
+    
     command = input("Input your command :  ")
     if command.lower() == "q":
         TERMINATE = True
         print("-------------------")
-<<<<<<< HEAD
         print("SBoss encryption is closing...")
-=======
-        print("Super duper encryption is closing...")
->>>>>>> b1164aac0359b87015547abd5e487be63bebf968
     elif command.lower() == "encr":
 
         msg = input("Insert your messeg: ")
@@ -74,7 +64,6 @@ while not TERMINATE:
 
     elif command.lower() == "decr":
      
-
         msg = input("Insert your messeg: ")
 
         if numberCheck(msg):
